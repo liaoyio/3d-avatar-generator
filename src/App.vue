@@ -2,10 +2,8 @@
 // import SuperHumanPreview from "@/components/SuperHumanPreview.vue";
 // import SuperHumanController from "@/components/SuperHumanController.vue";
 import { provide } from "vue";
-import * as SuperHuman from "@/components/SuperHuman/index.js";
+// import * as SuperHuman from "@/components/SuperHuman/index.js";
 import useSkinStore from "./store/skin";
-
-provide("skin", useSkinStore().mediumDark);
 // import useAlpacaStore from "./store/alpaca";
 
 // // 获取初始状态
@@ -22,22 +20,16 @@ provide("skin", useSkinStore().mediumDark);
 // };
 
 // // 重置状态
+
+import hair from "@/components/hair.vue";
+
+provide("skin", useSkinStore().mediumDark);
 </script>
 
 <template>
-  <!-- <h1 class="title">Super Human</h1>
-  <div class="container">
-    <SuperHumanPreview
-      :alpaca="alpaca"
-      @random-event="randomHandle"></SuperHumanPreview>
-    <SuperHumanController @change="changeHandle"></SuperHumanController>
-  </div> -->
-  <SuperHuman.Head></SuperHuman.Head>
+  <main class="main">
+    <hair></hair>
+  </main>
 </template>
 
-<style scoped>
-.container {
-  display: flex;
-  gap: 3rem;
-}
-</style>
+<style scoped></style>

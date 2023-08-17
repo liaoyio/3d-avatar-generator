@@ -1,7 +1,5 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import "minireset.min.css";
-import "./global.scss";
 import App from "./App.vue";
 
 const pinia = createPinia();
