@@ -1,35 +1,27 @@
 <script setup>
-// import SuperHumanPreview from "@/components/SuperHumanPreview.vue";
-// import SuperHumanController from "@/components/SuperHumanController.vue";
-import { provide } from "vue";
-// import * as SuperHuman from "@/components/SuperHuman/index.js";
-import useSkinStore from "./store/skin";
-// import useAlpacaStore from "./store/alpaca";
-
-// // 获取初始状态
-// const alpaca = useAlpacaStore();
-
-// // 随机状态
-// const randomHandle = () => {
-//   alpaca.random();
-// };
-
-// // 下载
-// const changeHandle = (data) => {
-//   alpaca.change(data.checkedType, data.value);
-// };
-
-// // 重置状态
-
-import hair from "@/components/hair.vue";
-
-provide("skin", useSkinStore().mediumDark);
+import {
+  SuperHumanHair,
+  SuperHumanHead,
+  SuperHumanFace,
+} from "@/components/SuperHuman";
 </script>
 
 <template>
   <main class="main">
-    <hair></hair>
+    <SuperHumanHair></SuperHumanHair>
+    <SuperHumanHead></SuperHumanHead>
+    <SuperHumanFace></SuperHumanFace>
   </main>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.main {
+  position: relative;
+  display: flow-root;
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+</style>

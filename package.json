@@ -11,17 +11,17 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.2.3",
-    "eslint": "^8.46.0",
+    "@vitejs/plugin-vue": "^4.3.1",
+    "eslint": "^8.47.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.9.0",
-    "eslint-plugin-vue": "^9.16.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-vue": "^9.17.0",
     "merge-images": "^2.0.0",
     "minireset.css": "^0.0.7",
     "pinia": "^2.1.6",
-    "prettier": "3.0.0",
-    "sass": "^1.64.2",
+    "prettier": "3.0.2",
+    "sass": "^1.66.0",
     "sass-loader": "^13.3.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.9"
   }
 }
