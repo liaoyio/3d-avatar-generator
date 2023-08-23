@@ -3,16 +3,15 @@
 import { computed } from "vue";
 
 const props = defineProps({
-  variable: {
-    type: String,
-    default: "brown",
+  style: {
+    type: Object,
   },
 });
 
 const eyeBallUrl = computed(
   () =>
     new URL(
-      `../../../assets/super-human/face/eye-ball/${props.variable}.png`,
+      `../../../assets/super-human/face/eye-ball/${props.style.name}.png`,
       import.meta.url
     ).href
 );

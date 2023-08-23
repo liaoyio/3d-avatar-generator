@@ -4,13 +4,11 @@ import { computed } from "vue";
 import hexToRgb from "@/utils/hexToRgb";
 
 const props = defineProps({
-  variable: {
-    type: String,
-    default: "eyebrow2",
+  style: {
+    type: Object,
   },
   color: {
     type: String,
-    default: "#4B382E",
   },
 });
 
@@ -19,7 +17,7 @@ const eyeBrowUrl = computed(
   () =>
     `url(${
       new URL(
-        `../../../assets/super-human/face/eye-brow/${props.variable}.png`,
+        `../../../assets/super-human/face/eye-brow/${props.style.name}.png`,
         import.meta.url
       ).href
     })`

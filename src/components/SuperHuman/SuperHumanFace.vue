@@ -7,23 +7,8 @@ import {
 } from "@/components/SuperHuman/face";
 
 defineProps({
-  eyeBrow: {
-    type: String,
-  },
-  eyeBell: {
-    type: String,
-  },
-  eyeLashes: {
-    type: String,
-  },
-  mouth: {
-    type: String,
-  },
-  eyeBrowColor: {
-    type: String,
-  },
-  eyeLashesColor: {
-    type: String,
+  face: {
+    type: Object,
   },
 });
 </script>
@@ -31,10 +16,10 @@ defineProps({
 <template>
   <Suspense>
     <section class="face-wrapper">
-      <EyeBrow></EyeBrow>
-      <EyeLashes></EyeLashes>
-      <EyeBall></EyeBall>
-      <Mouth></Mouth>
+      <EyeBrow v-bind="face.eyeBrow"></EyeBrow>
+      <EyeLashes v-bind="face.eyeLashes"></EyeLashes>
+      <EyeBall v-bind="face.eyeBall"></EyeBall>
+      <Mouth v-bind="face.mouth"></Mouth>
     </section>
   </Suspense>
 </template>
@@ -43,7 +28,6 @@ defineProps({
 .face-wrapper {
   width: 188px;
   height: 162px;
-  position: relative;
   .eye-brow-wrapper {
     position: absolute;
     top: 13px;

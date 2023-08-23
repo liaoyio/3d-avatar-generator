@@ -3,13 +3,11 @@ import { computed } from "vue";
 import hexToRgb from "@/utils/hexToRgb";
 
 const props = defineProps({
-  hairStyle: {
-    type: String,
-    default: "hair2",
+  style: {
+    type: Object,
   },
-  hairColor: {
+  color: {
     type: String,
-    default: () => "#9B5F45",
   },
 });
 
@@ -17,7 +15,7 @@ const hairUrl = computed(
   () =>
     `url(${
       new URL(
-        `../../assets/super-human/hair/${props.hairStyle}.png`,
+        `../../assets/super-human/hair/${props.style.name}.png`,
         import.meta.url
       ).href
     })`
@@ -25,8 +23,8 @@ const hairUrl = computed(
 
 const hairStyleRGB = computed(
   () =>
-    `${hexToRgb(props.hairColor).r},${hexToRgb(props.hairColor).g},${
-      hexToRgb(props.hairColor).b
+    `${hexToRgb(props.color).r},${hexToRgb(props.color).g},${
+      hexToRgb(props.color).b
     }`
 );
 </script>
@@ -51,12 +49,12 @@ const hairStyleRGB = computed(
   mask-image: v-bind(hairUrl);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  transform: translate(45px, 44px);
+  transform: translate(v-bind("props.style.x"), v-bind("props.style.y"));
 }
 
 .hair {
-  width: 395px;
-  height: 347px;
+  width: v-bind("props.style.w");
+  height: v-bind("props.style.h");
   background:
     v-bind(hairUrl) center center/auto auto no-repeat,
     linear-gradient(

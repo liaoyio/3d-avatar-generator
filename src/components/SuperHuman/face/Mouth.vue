@@ -3,9 +3,8 @@
 import { computed } from "vue";
 
 const props = defineProps({
-  variable: {
-    type: String,
-    default: "mouth1",
+  style: {
+    type: Object,
   },
 });
 
@@ -13,7 +12,7 @@ const props = defineProps({
 const mouthUrl = computed(
   () =>
     new URL(
-      `../../../assets/super-human/face/mouth/${props.variable}.png`,
+      `../../../assets/super-human/face/mouth/${props.style.name}.png`,
       import.meta.url
     ).href
 );
@@ -21,7 +20,7 @@ const mouthUrl = computed(
 
 <template>
   <section class="mouth-wrapper">
-    <img :src="mouthUrl" alt="mouth" />
+    <img class="mouth" :src="mouthUrl" alt="mouth" />
   </section>
 </template>
 
@@ -29,5 +28,8 @@ const mouthUrl = computed(
 .mouth-wrapper {
   width: 99px;
   height: 38px;
+  .mouth {
+    transform: translate(v-bind("props.style.x"), v-bind("props.style.y"));
+  }
 }
 </style>

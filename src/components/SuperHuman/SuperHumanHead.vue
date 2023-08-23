@@ -1,14 +1,14 @@
 <script setup>
 import { computed } from "vue";
+import useSuperHumanStore from "@/stores/superhuman";
+import hexToRgb from "@/utils/hexToRgb";
+
+const { skin } = useSuperHumanStore();
 
 const props = defineProps({
   gender: {
     type: String,
     default: "male",
-  },
-  skin: {
-    type: String,
-    default: "#BC7560",
   },
 });
 
@@ -22,22 +22,8 @@ const imageURL = computed(
     })`
 );
 
-function hexToRgb(hex) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
-
 const skinStyleRGB = computed(
-  () =>
-    `${hexToRgb(props.skin).r},${hexToRgb(props.skin).g},${
-      hexToRgb(props.skin).b
-    }`
+  () => `${hexToRgb(skin).r},${hexToRgb(skin).g},${hexToRgb(skin).b}`
 );
 </script>
 
