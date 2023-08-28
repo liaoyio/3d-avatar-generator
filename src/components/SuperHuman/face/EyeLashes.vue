@@ -1,35 +1,21 @@
-<!-- 睫毛 -->
 <script setup>
 import { computed } from "vue";
 import hexToRgb from "@/utils/hexToRgb";
+import useSuperHumanStore from "@/stores/superhuman";
 
-const props = defineProps({
-  style: {
-    type: Object,
-  },
-  color: {
-    type: String,
-  },
-});
+const eyeLashes = computed(() => useSuperHumanStore().eyeLashes);
 
-// 图片地址
 const eyeLashesUrl = computed(
   () =>
     `url(${
       new URL(
-        `../../../assets/super-human/face/eye-lashes/${props.style.name}.png`,
+        `../../../assets/super-human/face/eye-lashes/${eyeLashes.value.style.name}.png`,
         import.meta.url
       ).href
     })`
 );
 
-// 颜色
-const eyeLashesColorRgb = computed(
-  () =>
-    `${hexToRgb(props.color).r},${hexToRgb(props.color).g},${
-      hexToRgb(props.color).b
-    }`
-);
+const eyeLashesColorRgb = computed(() => hexToRgb(eyeLashes.value.color));
 </script>
 
 <template>

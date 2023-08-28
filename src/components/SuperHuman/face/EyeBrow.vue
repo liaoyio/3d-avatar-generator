@@ -1,43 +1,29 @@
-<!-- 眉毛 -->
 <script setup>
 import { computed } from "vue";
 import hexToRgb from "@/utils/hexToRgb";
+import useSuperHumanStore from "@/stores/superhuman";
 
-const props = defineProps({
-  style: {
-    type: Object,
-  },
-  color: {
-    type: String,
-  },
-});
+const eyeBrow = computed(() => useSuperHumanStore().eyeBrow);
 
-// 图片地址
 const eyeBrowUrl = computed(
   () =>
     `url(${
       new URL(
-        `../../../assets/super-human/face/eye-brow/${props.style.name}.png`,
+        `../../../assets/super-human/face/eye-brow/${eyeBrow.value.style.name}.png`,
         import.meta.url
       ).href
     })`
 );
 
-// 颜色
-const eyeBrowColorRgb = computed(
-  () =>
-    `${hexToRgb(props.color).r},${hexToRgb(props.color).g},${
-      hexToRgb(props.color).b
-    }`
-);
+const eyeBrowColorRgb = computed(() => hexToRgb(eyeBrow.value.color));
 </script>
 
 <template>
-  <section class="eye-brow-wrapper">
+  <div class="eye-brow-wrapper">
     <div class="mask">
       <div class="eye-brow"></div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>

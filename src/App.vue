@@ -1,48 +1,42 @@
 <script setup>
-import {
-  SuperHumanHair,
-  SuperHumanHead,
-  SuperHumanFace,
-  SuperHumanTop,
-} from "@/components/SuperHuman";
-import useSuperHumanStore from "@/stores/superhuman";
+import SuperHumanPreview from "@/components/SuperHumanPreview.vue";
+import SuperHumanController from "@/components/SuperHumanController.vue";
+import SuperHumanButtonGroup from "@/components/SuperHumanButtonGroup.vue";
 </script>
 
 <template>
+  <header class="header">
+    <h1 class="title">
+      Superhuman 3D <span class="important">Character</span>
+    </h1>
+  </header>
   <main class="main">
-    <SuperHumanHair v-bind="useSuperHumanStore().hair"></SuperHumanHair>
-    <SuperHumanHead></SuperHumanHead>
-    <SuperHumanFace :face="useSuperHumanStore().face"></SuperHumanFace>
-    <SuperHumanTop></SuperHumanTop>
+    <SuperHumanPreview></SuperHumanPreview>
+    <SuperHumanController></SuperHumanController>
+    <SuperHumanButtonGroup></SuperHumanButtonGroup>
   </main>
+  <footer class="footer"></footer>
 </template>
 
 <style lang="scss" scoped>
+.header {
+  padding-top: 50px;
+  .title {
+    font-size: 56px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(33, 37, 41);
+    .important {
+      color: #7761f9;
+    }
+  }
+}
 .main {
-  position: relative;
-  width: 465px;
-  height: 499px;
-  outline: 1px solid green;
-
-  .hair-warpper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    outline: 1px solid red;
-  }
-  .head-wrapper {
-    position: absolute;
-    bottom: 0;
-    left: 52px;
-    z-index: 1;
-    outline: 1px solid red;
-  }
-  :deep(.face-wrapper) {
-    position: absolute;
-    z-index: 3;
-    top: 211px;
-    left: 166px;
-  }
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  justify-content: space-evenly;
+  overflow: auto;
+  padding-top: 13px;
 }
 </style>

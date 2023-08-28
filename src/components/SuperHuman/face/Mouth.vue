@@ -1,18 +1,13 @@
-<!-- 嘴巴 -->
 <script setup>
 import { computed } from "vue";
+import useSuperHumanStore from "@/stores/superhuman";
 
-const props = defineProps({
-  style: {
-    type: Object,
-  },
-});
+const mouth = computed(() => useSuperHumanStore().mouth);
 
-// Mouth URL
 const mouthUrl = computed(
   () =>
     new URL(
-      `../../../assets/super-human/face/mouth/${props.style.name}.png`,
+      `../../../assets/super-human/face/mouth/${mouth.value.style.name}.png`,
       import.meta.url
     ).href
 );
@@ -29,7 +24,7 @@ const mouthUrl = computed(
   width: 99px;
   height: 38px;
   .mouth {
-    transform: translate(v-bind("props.style.x"), v-bind("props.style.y"));
+    transform: translate(v-bind("mouth.style.x"), v-bind("mouth.style.y"));
   }
 }
 </style>

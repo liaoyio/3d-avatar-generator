@@ -3,36 +3,17 @@ import { computed } from "vue";
 import useSuperHumanStore from "@/stores/superhuman";
 import hexToRgb from "@/utils/hexToRgb";
 
-const { skin } = useSuperHumanStore();
+const skin = computed(() => useSuperHumanStore().skin);
 
-const props = defineProps({
-  gender: {
-    type: String,
-    default: "male",
-  },
-});
-
-const imageURL = computed(
-  () =>
-    `url(${
-      new URL(
-        `../../assets/super-human/head/${props.gender}.png`,
-        import.meta.url
-      ).href
-    })`
-);
-
-const skinStyleRGB = computed(
-  () => `${hexToRgb(skin).r},${hexToRgb(skin).g},${hexToRgb(skin).b}`
-);
+const skinColorRgb = computed(() => hexToRgb(skin.value.color));
 </script>
 
 <template>
-  <section class="head-wrapper">
+  <div class="head-wrapper">
     <div class="mask">
       <div class="head"></div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
@@ -41,8 +22,8 @@ const skinStyleRGB = computed(
   height: 366px;
 }
 .mask {
-  -webkit-mask-image: v-bind(imageURL);
-  mask-image: v-bind(imageURL);
+  -webkit-mask-image: url("@/assets/super-human/head/male.png");
+  mask-image: url("@/assets/super-human/head/male.png");
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
@@ -53,14 +34,14 @@ const skinStyleRGB = computed(
   background:
     url("@/assets/super-human/head/male-nose.png") 192px 118px / auto auto
       no-repeat,
-    v-bind(imageURL) center center/auto auto no-repeat,
+    url("@/assets/super-human/head/male.png") center center/auto auto no-repeat,
     linear-gradient(
-      rgba(v-bind("skinStyleRGB"), 1),
-      rgba(v-bind("skinStyleRGB"), 1)
+      rgba(v-bind("skinColorRgb"), 1),
+      rgba(v-bind("skinColorRgb"), 1)
     ),
     linear-gradient(
-      rgba(v-bind("skinStyleRGB"), 0.2),
-      rgba(v-bind("skinStyleRGB"), 0.2)
+      rgba(v-bind("skinColorRgb"), 0.2),
+      rgba(v-bind("skinColorRgb"), 0.2)
     ),
     #fff;
   background-blend-mode: soft-light, overlay, darken, normal;

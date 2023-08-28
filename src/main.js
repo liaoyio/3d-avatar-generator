@@ -1,5 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import "normalize.css";
+import "./style.css";
 import App from "./App.vue";
 
 const pinia = createPinia();

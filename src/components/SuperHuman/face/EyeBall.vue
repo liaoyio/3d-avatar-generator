@@ -1,17 +1,13 @@
-<!-- 眼珠 -->
 <script setup>
 import { computed } from "vue";
+import useSuperHumanStore from "@/stores/superhuman";
 
-const props = defineProps({
-  style: {
-    type: Object,
-  },
-});
+const eyeBall = computed(() => useSuperHumanStore().eyeBall);
 
 const eyeBallUrl = computed(
   () =>
     new URL(
-      `../../../assets/super-human/face/eye-ball/${props.style.name}.png`,
+      `../../../assets/super-human/face/eye-ball/${eyeBall.value.style.name}.png`,
       import.meta.url
     ).href
 );

@@ -5,23 +5,15 @@ import {
   EyeBall,
   Mouth,
 } from "@/components/SuperHuman/face";
-
-defineProps({
-  face: {
-    type: Object,
-  },
-});
 </script>
 
 <template>
-  <Suspense>
-    <section class="face-wrapper">
-      <EyeBrow v-bind="face.eyeBrow"></EyeBrow>
-      <EyeLashes v-bind="face.eyeLashes"></EyeLashes>
-      <EyeBall v-bind="face.eyeBall"></EyeBall>
-      <Mouth v-bind="face.mouth"></Mouth>
-    </section>
-  </Suspense>
+  <section class="face-wrapper">
+    <EyeBrow></EyeBrow>
+    <EyeLashes></EyeLashes>
+    <EyeBall></EyeBall>
+    <Mouth></Mouth>
+  </section>
 </template>
 
 <style lang="scss" scoped>
