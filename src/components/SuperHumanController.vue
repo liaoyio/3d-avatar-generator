@@ -1,7 +1,6 @@
 <script setup>
 import {
   skin,
-  color,
   hairColor,
   hair,
   eyeBrow,
@@ -11,51 +10,61 @@ import {
 } from "@/data/superhuman";
 import useSuperHumanStore from "@/stores/superhuman";
 
+// const hairObj = import.meta.glob("../assets/super-human/hair/*.png", {
+//   as: "url",
+// });
+// const hairModuleList = Object.values(hairObj);
+// const hairSrc = hairModuleList.map((item) => item());
+// console.log(await Promise.all(hairSrc));
+
+function getImgSrcListByName(imgPath, imgName) {
+  return new URL(`${imgPath}${imgName}.png`, import.meta.url).href;
+}
+
+console.log(getImgSrcListByName("../assets/super-human/hair/", "hair1"));
+
 const data = [
   {
     title: "Skin",
     part: "skin",
     colorList: Object.values(skin),
     imgPath: null,
-    imgList: null,
+    imgNameList: null,
   },
   {
     title: "Hair",
     part: "hair",
     colorList: Object.values(hairColor),
-    imgPath: new URL("../assets/super-human/hair/", import.meta.url).href,
-    imgList: Object.values(hair),
+    imgPath: "../assets/super-human/hair/",
+    imgNameList: Object.values(hair),
   },
   {
     title: "EyeBrow",
     part: "eyeBrow",
     colorList: null,
-    imgPath: new URL("../assets/super-human/face/eye-brow/", import.meta.url)
-      .href,
-    imgList: Object.values(eyeBrow),
+    imgPath: "../assets/super-human/face/eye-brow/",
+    imgNameList: Object.values(eyeBrow),
   },
   {
     title: "Mouth",
     part: "mouth",
     colorList: null,
-    imgPath: new URL("../assets/super-human/face/mouth/", import.meta.url).href,
-    imgList: Object.values(mouth),
+    imgPath: "../assets/super-human/face/mouth/",
+    imgNameList: Object.values(mouth),
   },
   {
     title: "EyeBall",
     part: "eyeBall",
     colorList: null,
-    imgPath: new URL("../assets/super-human/face/eye-ball/", import.meta.url)
-      .href,
-    imgList: Object.values(eyeBall),
+    imgPath: "../assets/super-human/face/eye-ball/",
+    imgNameList: Object.values(eyeBall),
   },
   {
     title: "EyeLashes",
     part: "eyeLashes",
     colorList: null,
-    imgPath: new URL("../assets/super-human/face/eye-lashes/", import.meta.url)
-      .href,
-    imgList: Object.values(eyeLashes),
+    imgPath: "../assets/super-human/face/eye-lashes/",
+    imgNameList: Object.values(eyeLashes),
   },
 ];
 
@@ -73,7 +82,7 @@ const changeImg = (part, value) => {
   <section class="controller-wrapper">
     <div
       class="controller"
-      v-for="({ title, part, colorList, imgPath, imgList }, index) in data"
+      v-for="({ title, part, colorList, imgPath, imgNameList }, index) in data"
       :key="index">
       <h2 class="title">
         <img src="@/assets/icon/variable.svg" />
@@ -87,19 +96,19 @@ const changeImg = (part, value) => {
           :style="{ background: item, borderColor: item }"
           @click="changeColor(part, item)"></li>
       </ul>
-      <ul v-if="imgList" class="img-list">
+      <ul v-if="imgNameList" class="img-list">
         <li
           @click="changeImg(part, item)"
           :class="[
             'item',
             { active: item.name === superHumanStore[part].style.name },
           ]"
-          v-for="(item, index) in imgList"
+          v-for="(item, index) in imgNameList"
           :key="index">
           <img
             draggable="false"
             class="img"
-            :src="imgPath + '/' + item.name + '.png'"
+            :src="getImgSrcListByName(imgPath, item.name)"
             :alt="item.name" />
         </li>
       </ul>
