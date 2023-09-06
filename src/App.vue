@@ -1,7 +1,6 @@
 <script setup>
 import SuperHumanPreview from "@/components/SuperHumanPreview.vue";
 import SuperHumanController from "@/components/SuperHumanController.vue";
-import SuperHumanButtonGroup from "@/components/SuperHumanButtonGroup.vue";
 </script>
 
 <template>
@@ -13,7 +12,6 @@ import SuperHumanButtonGroup from "@/components/SuperHumanButtonGroup.vue";
   <main class="main">
     <SuperHumanPreview></SuperHumanPreview>
     <SuperHumanController></SuperHumanController>
-    <SuperHumanButtonGroup></SuperHumanButtonGroup>
   </main>
   <footer class="footer"></footer>
 </template>
@@ -37,6 +35,20 @@ import SuperHumanButtonGroup from "@/components/SuperHumanButtonGroup.vue";
   grid-template-rows: repeat(2, auto);
   justify-content: space-evenly;
   overflow: auto;
-  padding-top: 13px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding-top: unset;
+    .title {
+      font-size: 38px;
+    }
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
 }
 </style>

@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import {
   skin,
   hairColor,
@@ -10,7 +11,7 @@ import {
 } from "@/data/superhuman";
 import useSuperHumanStore from "@/stores/superhuman";
 
-const data = [
+const data = ref([
   {
     title: "Skin",
     part: "skin",
@@ -47,7 +48,7 @@ const data = [
     colorList: null,
     imgList: Object.values(eyeLashes),
   },
-];
+]);
 
 const superHumanStore = useSuperHumanStore();
 
@@ -83,6 +84,7 @@ const changeImg = (part, value) => {
           @click="changeImg(part, item)"
           :class="[
             'item',
+            item.name,
             {
               active: item.name === superHumanStore[part].style.name,
             },
@@ -109,7 +111,7 @@ const changeImg = (part, value) => {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 0 8px;
+  padding: 8px;
   .controller {
     display: flex;
     flex-direction: column;
@@ -186,7 +188,7 @@ const changeImg = (part, value) => {
       }
       .item.active {
         background: rgba(255, 255, 255, 0.7);
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        outline: 2px solid rgba(0, 0, 0, 0.1);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }

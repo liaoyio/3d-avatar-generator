@@ -26,3 +26,12 @@ body {
   gap: 75px;
   height: 100vh;
 }
+
+@media (max-width: 768px) {
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: unset;
+  }
+}

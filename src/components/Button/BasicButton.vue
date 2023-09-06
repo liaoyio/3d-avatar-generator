@@ -1,9 +1,8 @@
 <script setup>
-defineProps({
-  clickHandle: {
-    type: Function,
-  },
-});
+const emit = defineEmits(["click"]);
+const clickHandle = () => {
+  emit("click");
+};
 </script>
 
 <template>

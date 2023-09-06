@@ -9,6 +9,7 @@ import {
   eyeBall,
   eyeLashes,
 } from "@/data/superhuman";
+import getRandomPropertyWithoutRepeat from "@/utils/getRandomPropertyWithoutRepeat";
 
 const useSuperHumanStore = defineStore("superHuman", {
   state: () => ({
@@ -42,6 +43,32 @@ const useSuperHumanStore = defineStore("superHuman", {
     },
     change(part, type, value) {
       this[part][type] = value;
+    },
+    random() {
+      this.$patch((state) => {
+        state.skin = {
+          color: getRandomPropertyWithoutRepeat(skin),
+        };
+        state.hair = {
+          style: getRandomPropertyWithoutRepeat(hair),
+          color: getRandomPropertyWithoutRepeat(hairColor),
+        };
+        state.eyeBrow = {
+          style: getRandomPropertyWithoutRepeat(eyeBrow),
+          color: "#995641",
+        };
+        state.mouth = {
+          style: getRandomPropertyWithoutRepeat(mouth),
+          color: "#995641",
+        };
+        state.eyeBall = {
+          style: getRandomPropertyWithoutRepeat(eyeBall),
+        };
+        state.eyeLashes = {
+          style: getRandomPropertyWithoutRepeat(eyeLashes),
+          color: "#995641",
+        };
+      });
     },
   },
 });
